@@ -81,9 +81,12 @@ rm(targets_mir)
 # build tf tables
 ## get correlations
 tf <- read_lines('https://www.dropbox.com/s/dprzegcahgx6pjv/tf_list.txt?raw=1')
-
+dir.create('tmp')
 dir.create('tmp/tf')
-map(tf, tf_get, dir = 'tmp/tf/')
+
+urls <- tf_url(tf)
+fnames <- tf_fname(tf, dir = 'tmp/tf/')
+download.file(urls, fnames, quiet = TRUE, method = 'libcurl')
 
 ## tidy correlations
 cor_tf <- tf_read() %>%
@@ -107,7 +110,9 @@ rm(cor_tf)
 ## targets
 ## download target files
 dir.create('tmp/targets')
-map(tf, tf_get, dir = 'tmp/targets/', all = FALSE)
+urls <- tf_url(tf, all = FALSE)
+fnames <- tf_fname(tf, dir = 'tmp/targets/', all = FALSE)
+download.file(urls, fnames, quiet = TRUE, method = 'libcurl')
 
 ## read and tidy targets
 targets_tf <- tf_read('tmp/targets/')

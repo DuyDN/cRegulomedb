@@ -374,26 +374,22 @@ get_targets <- function(feature_type) {
   
 }
 
-#' Get transcription factor correlation data
+#' Construct a url for Cistrome Cancer file
 #' 
-#' This function downlaods the tarnscription factors correlation data from Cistrome Cancer. Briefly, the function constructs a url
-#' for the file using a predefined handle and a suffix. Then, constructs a file name and calls the base function downlaod.file
+#' This function constructs a url to downlaod the tarnscription factors correlation data from Cistrome Cancer. Briefly, the function constructs a url
+#' for the file using a predefined handle and a suffix.
 #'
 #' @param tf A character string of the official symbol of the transcription factor
-#' @param dir A character string for the temporary directory.
 #' @param all A logicall of whether to get the correlation files of all genes (default) or only targets.
 #'
-#' @return NULL. A csv file is downlaoded to dir
+#' @return A character string of the cistrome cancer url for a transcription factor
 #' \dontrun{
-#' # obtain a single file from Cistrome Cancer
-#' tf_get('AFF4', dir = 'tmp/tf/')
-#' 
-#' # obtain multiple files
-#' tf <- c('AFF4', 'AR', 'ARID3A')
-#' map(tf, tf_get, dir = 'tmp/tf')
+#' url <- tf_url('AFF4')
+#' fname <- tf_fname('AFF4', dir = 'tmp/tf')
+#' download.file(url, fname)
 #' }
 #' @export
-tf_get <- function(tf, dir, all = TRUE) {
+tf_url <- function(tf, all = TRUE) {
   # construct a suffix depending of type of file
   # all refers to files containing correlations of all genes not only targets
   if(all == TRUE) {
@@ -405,13 +401,36 @@ tf_get <- function(tf, dir, all = TRUE) {
   # construct url by adding cistrome handle and file suffix
   tf_url <- paste('http://cistrome.org/CistromeCancer/CancerTarget/examples/', tf, suf, sep = '')
   
+  return(tf_url)
+}
+
+#' Construct a file name for a Cistrome Cancer file
+#'
+#' @param tf A character string of the official symbol of the transcription factor
+#' @param dir A character string for a directory to download files.
+#' @param all A logicall of whether to get the correlation files of all genes (default) or only targets.
+#'
+#' @return A character string of the cistrome cancer file name for a transcription factor
+#' \dontrun{
+#' url <- tf_url('AFF4')
+#' fname <- tf_fname('AFF4', dir = 'tmp/tf')
+#' download.file(url, fname)
+#' }
+#' @export
+tf_fname <- function(tf, dir, all = TRUE) {
+  # construct a suffix depending of type of file
+  # all refers to files containing correlations of all genes not only targets
+  if(all == TRUE) {
+    suf <- '.all.cor.csv'
+  } else {
+    suf <- '.cor.csv'
+  }
+  
   # construct a file name 
   tf_fname <- paste(dir, tf, suf, sep = '')
   
-  # downlaod file
-  download.file(tf_url, destfile = tf_fname)
+  return(tf_fname)
 }
-
 #' Read transcription factor correlation data
 #'
 #' This is a custom function to read the local csv files obtained from Cistrome Cancer into a list of tidy data.frames.
