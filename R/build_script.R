@@ -82,7 +82,7 @@ rm(targets_mir)
 ## get correlations
 tf <- read_lines('https://www.dropbox.com/s/dprzegcahgx6pjv/tf_list.txt?raw=1')
 dir.create('tmp/tf')
-tf <- tf[101:200]
+tf <- tf
 urls <- tf_url(tf)
 fnames <- tf_fname(tf, dir = 'tmp/tf/')
 download.file(urls, fnames, quiet = TRUE)
