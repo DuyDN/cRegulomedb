@@ -10,4 +10,4 @@ compress_db:
 	gzip cRegulome.db.gz
 
 upload_db:
-	~/dropbox_uploader.sh chunck_upload cRegulome.db.gz cRegulome.db.gz
+	~/dropbox_uploader.sh upload cRegulome.db.gz cRegulome.db.gz
