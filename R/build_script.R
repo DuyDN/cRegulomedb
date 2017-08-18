@@ -117,7 +117,7 @@ download.file(urls, fnames, quiet = TRUE)
 targets_tf <- tf_read('tmp/targets/')
 targets_tf <- lapply(targets_tf, '[', 1)
 targets_tf <- melt(targets_tf) %>%
-  setNames(c('featrue', 'tf'))
+  setNames(c('feature', 'tf'))
 
 ## write targets_tf to db
 db <- dbConnect(SQLite(), 'cRegulome.db')
