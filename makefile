@@ -1,8 +1,8 @@
-all: build_db clean compress_db upload_db
+all: build_db clean compress_db
         
 build_db:
-	Rscript R/build_script.R
-	Rscript R/db_testset.R
+	Rscript --quiet --vanilla R/build_script.R
+	Rscript --quiet --vanilla R/db_testset.R
 clean:
 	rm -rf tmp
 

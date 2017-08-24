@@ -30,7 +30,7 @@ require(RSQLite)
 # sourece the custom functions
 source('R/build_functions.R')
 
-# It's sellf-explainatory if you ask me. But just in case I need to use it a week latter :)
+# It's self-explainatory if you ask me. But just in case I need to use it a week latter :)
 # First, a call to mirna_info to get only TCGA studies with all three assays performed.
 # Second, a call to cor_write. This is where the magic happen, but it takes a while so hold on.
 #         Meanwhile you can read what the function does in build_functions.R. cor_write cheats
@@ -82,7 +82,7 @@ rm(targets_mir)
 ## get correlations
 tf <- read_lines('https://www.dropbox.com/s/dprzegcahgx6pjv/tf_list.txt?raw=1')
 dir.create('tmp/tf')
-tf <- tf
+
 urls <- tf_url(tf)
 fnames <- tf_fname(tf, dir = 'tmp/tf/')
 download.file(urls, fnames, quiet = TRUE)
@@ -100,7 +100,9 @@ names(cor_tf)[2] <- 'feature'
 db <- dbConnect(SQLite(), 'cRegulome.db')
 dbWriteTable(db, 
              name = 'cor_tf',
-             value =  cor_tf, row.names = FALSE)
+             value =  cor_tf, 
+             row.names = FALSE,
+             overwrite = TRUE)
 dbSendQuery(db,
             statement = 'create index idx3 on cor_tf (tf);')
 dbDisconnect(db)
@@ -118,12 +120,14 @@ targets_tf <- tf_read('tmp/targets/')
 targets_tf <- lapply(targets_tf, '[', 1)
 targets_tf <- melt(targets_tf) %>%
   setNames(c('feature', 'tf'))
-
+head(targets_tf)
 ## write targets_tf to db
 db <- dbConnect(SQLite(), 'cRegulome.db')
 dbWriteTable(db, 
              name = 'targets_tf',
-             value =  targets_tf, row.names = FALSE)
+             value =  targets_tf,
+             row.names = FALSE,
+             overwrite = TRUE)
 dbSendQuery(db,
             statement = 'create index idx4 on targets_tf (tf);')
 dbDisconnect(db)

@@ -457,8 +457,10 @@ tf_read <- function(dir = 'tmp/tf/') {
   fls <- list.files(dir,
                     pattern = '*.csv',
                     full.names = TRUE)
-  tf <- lapply(fls,
-               readr::read_csv)
+  tf <- lapply(fls, function(x) {
+      df <- readr::read_csv(x)
+      data.table::data.table(df)
+  })
   
   # subset damaged files
   ind <- unlist(lapply(tf, nrow)) > 1
