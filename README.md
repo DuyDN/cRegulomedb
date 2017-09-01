@@ -7,8 +7,8 @@ and genes in cancers.
 ## Data sources  
 The transcription factors correlation data are obtained from [Cistrome Cancer](http://cistrome.org/CistromeCancer/).
 This data is based on integrative analysis of public tarnscription factor ChIP-seq data and The Cancer Genome Atlas
-[(TCGA)](https://tcga-data.nci.nih.gov) data. The microRNA correlation data are obtained from [miRCancer](https://mahshaaban.shinyapps.io/miRCancer/) 
-database. [miRCancer](https://mahshaaban.shinyapps.io/miRCancer/) is based on a similar analysis using [(TCGA)](https://tcga-data.nci.nih.gov)
+[(TCGA)](https://tcga-data.nci.nih.gov) data. The microRNA correlation data are obtained from [miRCancerdb](https://mahshaaban.shinyapps.io/miRCancerdb/) 
+database. [miRCancerdb](https://mahshaaban.shinyapps.io/miRCancerdb/) is based on a similar analysis using [(TCGA)](https://tcga-data.nci.nih.gov)
 data and [TargetScan](http://www.targetscan.org) annotations.  
 
 ## Build/update the database file  
