@@ -1,2 +1,0 @@
-cRegulome.db.gz filter=lfs diff=lfs merge=lfs -text
-test.db.gz filter=lfs diff=lfs merge=lfs -text
