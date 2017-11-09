@@ -12,8 +12,8 @@ database. [miRCancerdb](https://mahshaaban.shinyapps.io/miRCancerdb/) is based o
 data and [TargetScan](http://www.targetscan.org) annotations.  
 
 ## Build/update the database file  
-This repository contains two R scripts; `build_functions.R` and `build_script.R` and a simple `makefile`. By running `make` in
-the a UNIX shell, the `build_script.R` loads the required libraries and sources the `build_functions.R`. To do that locally:  
+This repository contains two R scripts; `build_tf.R` and `build_mir.R` and a simple `makefile`. By running `make` in
+the a UNIX shell, the build scripts load the required libraries and including [`sqlome`](https://github.com/MahShaaban/sqlome) that includes the nessecary funcions to build the database. To do that locally:  
 
 ```
 git clone https://github.com/MahShaaban/cRegulomedb
