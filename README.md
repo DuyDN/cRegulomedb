@@ -21,16 +21,8 @@ cd cRegulomedb
 make
 ```
 
-The make command proceeds to compress the database file and upload it to (). To only buil/update the database for local use,
-the `build_db` section of the `makefile` suffices.  
-
-```
-make build_db
-```
-
 ## More    
-+ For details the database building steps, [here]().  
-+ For more about the cRegulome R package, [here]().  
++ For more about the cRegulome R package, [here](https://github.com/MahShaaban/cRegulome).  
 + For Citations, [here]().  
 
 
