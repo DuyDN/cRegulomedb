@@ -20,6 +20,8 @@ git clone https://github.com/MahShaaban/cRegulomedb
 cd cRegulomedb
 make
 ```
+## Pre-built copy
+A pre-built copy of the database file can be obtained from [here](https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/9537385/cRegulome.db.gz).
 
 ## More    
 + For more about the cRegulome R package, [here](https://github.com/MahShaaban/cRegulome).  
